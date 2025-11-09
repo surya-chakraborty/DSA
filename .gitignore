@@ -1,0 +1,25 @@
+# Compiled object files and executables
+*.exe
+*.out
+*.o
+*.obj
+
+# If already tracked use command - git rm --cached **/*.exe
+
+
+# Debug files
+*.pdb
+*.idb
+
+# Mac/Linux binaries
+*.so
+*.dylib
+
+# IDE / Editor configs
+.vscode/
+.idea/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db
