@@ -103,3 +103,38 @@ int main(){
 
     return 0;
 }
+
+/*
+Time and Sapce Complexity 
+
+Why they are important indeed ? - they will help the interviewer to judge your code by evaluating how much time and space is needed for your code to run.
+
+
+But isn't that a variable ? I mean the same code might take x time on some old machine and x/4 time on a new MacBook. 
+Yeah, that's why we don't consider it in seconds , it has its own unit.
+Time taken != Time Complexity 
+
+Time Complexity - 
+
+Big O notation - is the count of number of steps to run a program in terms of time and space 
+But it would take so much time to cpount each step right ? that's why there are the rules.
+Rules - 
+1. Always calculate in terms of worst case scenario
+2. Avoid contants
+3. Avoid lower values
+for (int i = 0; i < n; i++) {
+ // Any operation of code within here.
+} 
+Time Complexity - O (n × 3) == O (n)
+
+Cases - best, worst and average case
+Notations - Omega, Big- O and theta respectively 
+Bounds - Lower and Upper Bound respectively 
+
+Space Complexity - auxiliary space + input space
+Auxiliary space - space taken to solve the problem
+Input space - space taken by the problem variables
+
+Important rule - never ever mutate the input data if not  mentioned in the problem rather take an extra variable in auxiliary space.
+In competitive programming websites, 1s ~ 10^8 operations
+*/
