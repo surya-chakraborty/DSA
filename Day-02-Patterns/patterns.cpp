@@ -326,6 +326,35 @@ void pattern20(int n){
         (i < n) ? spaces -= 2 : spaces += 2;
     }
 }
+
+void pattern21(int n){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(i == 0 || j == 0 || i ==  n - 1 || j == n - 1) {
+                // try to understand the if statemnt clearly using bruteforce pen and paper
+                cout << "*";
+            }
+            else cout << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+void pattern22(int n){
+    // have to try it multiple times to understand properly
+    for(int i = 0; i < 2*n - 1; i++){
+        for(int j = 0; j < 2*n - 1; j++){
+            int top = i;
+            int left = j;
+            int right = (2*n - 2) - j;
+            int down = (2*n - 2) - i;
+            cout << (n - min(min(top, down), min(left, right)));
+        }
+        cout << endl;
+    }
+}
+
 int main(){
 
     // t is the n umber of test cases
@@ -355,7 +384,9 @@ int main(){
         // pattern17(n);
         // pattern18(n);
         // pattern19(n);
-        pattern20(n);
+        // pattern20(n);
+        // pattern21(n);
+        pattern22(n);
     }
 
     return 0;
