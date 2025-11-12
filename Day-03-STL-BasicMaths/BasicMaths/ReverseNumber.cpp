@@ -2,16 +2,17 @@
 using namespace std;
 
 void ReverseNum(int n){
-    int reversed = 0;
-    while(n ! = 0){
-        digit = n % 10 // store the lasst digit
-        reversed = reversed * 10 + digit; // add the digit to the revsed number
-        n = n / 10 // remove last digit
+    int reversed = 0, digit;
+    while(n != 0){
+        digit = n % 10; // store the last digit
+        reversed = reversed * 10 + digit; // add the digit to the reversed number
+        n = n / 10; // remove last digit
     }
+    cout << " Reversed NO. -> " << reversed << endl;
 }
 
 int main(){
-    in t;
+    int t;
     cin >> t;
     for(int i = 0; i < t; i++){
         int n;

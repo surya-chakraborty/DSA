@@ -5,11 +5,13 @@ using namespace std;
 
 void countDigits(int n){
     int count = 0;
-    // Logic : keep dividing the number by 10 until it becomes zero as in every division it will delte the last element 
+    int temp = n; // storing in temp variable to use while printing
+    // Logic : keep dividing the number by 10 until it becomes zero as in every division it will delete the last element 
     while(n != 0){
         n = n / 10;
         count++;
     }
+    cout << "No of digits in  " << temp << " is -> " << count << endl;
 }
 
 int main(){
@@ -19,7 +21,7 @@ int main(){
         int n;
         cout << "enter the no. to count digits for: " ;
         cin >> n;
-        countDigits();
+        countDigits(n);
         t--;
     }
     
