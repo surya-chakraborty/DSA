@@ -95,6 +95,50 @@ List - is contiguous conatiners that allows inserting and delteing any elemnt in
 Functions - push_front/back, pop_front/back, front, back, reverse, sort, empty, size
 syntax - list <object_type> variable_name;
 
+next_permutation() -
+Header: <algorithm>
+Definition: Rearranges elements into the next lexicographically greater permutation.
+Syntax: next_permutation(begin, end);
+Parameters:
+    begin – iterator to first element
+    end – iterator to just after the last element
+Return:
+    true  – if next permutation exists
+    false – if it was the last permutation (resets to smallest order)
+Example:
+    int arr[] = {1, 2, 3};
+    next_permutation(arr, arr + 3); // arr becomes {1, 3, 2}
+Usage:
+    - To generate the next or all permutations (using do...while)
+    - Common in DSA / competitive programming
+    - Rarely used in real-world applications
+
+
+Bult-in popupcount - help us to count how many 1 are there in the
+binary representation(containing sequence of 0 and 1) of any given
+decimal number.
+
+Header: (No extra header needed, part of GCC built-ins)
+Definition: Counts number of set bits (1s) in binary form of integer.
+Syntax:  __builtin_popcount(int num);
+Return: Number of set bits (int)
+Example:
+    int n = 13;
+    cout << __builtin_popcount(n); // Output: 3
+Variants:
+    __builtin_popcountl(long num)
+    __builtin_popcountll(long long num)
+Use:
+    - Quick bit count in DSA problems
+    - Used in bitmasking and combinatorial logic
+    - Works only for positive/unsigned integers
+
+Sort Function - is widely used operation in any code that's why stl
+provides it out of the box - by default it shorts in descending order,
+to chnage that we need to pass a third optional argument that will be a comparator.
+
+min_element() - find out the minimum elent on any iterable container such as vector, array or list
+synatx - *min_element(first-index. last-index)
 
 */
 
@@ -525,6 +569,66 @@ void list_fnc(){
     printlist(li);
 }
 
+void next_permutation_arr(){
+  int arr[] = {1,3,2};
+    
+    next_permutation(arr,arr+3);//using in-built function of C++
+    
+    cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2];
+}
+
+void next_permuatation_vector(){
+  vector<int> v = {1, 2, 3};
+    do {
+        for (int x : v) cout << x << " ";
+        cout << endl;
+    } while (next_permutation(v.begin(), v.end()));
+}
+
+void popcount(){
+
+  // Normal decimal numbers
+  int n = 7;
+    
+    cout<<__builtin_popcount(n);
+
+  // Long decimal numbers
+  long long m = 77777777777777;
+    
+    cout<<__builtin_popcountll(m);
+
+}
+
+void sort_fnc_ex(){
+  // Using array
+  cout << "Array example" << endl;
+  int arr[] = {4,2,1};
+    // the greater<content_type>() comparatror is optionall - it helps to sort in descending order
+    sort(arr, arr+3, greater<int>());
+    
+    cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2];
+
+  cout << "vector example" << endl;
+  vector<int> vec = {4,2,1};
+
+    sort(vec.begin(), vec.end(), greater<int>());
+    
+    cout<<vec[0]<<" "<<vec[1]<<" "<<vec[2];
+
+}
+
+void findMinElem(){
+    vector<int>v {4,2,5,9,1};
+    cout<<"The elements in the vector are: ";
+    for(int i=0;i<v.size();i++)
+      {
+          cout<<v[i]<<" ";
+      }
+    cout<<endl;
+    
+    cout<<"The minimum element is: "<<*min_element(v.begin(),v.end());
+}
+
 int main(){
 
     // unorderd_set
@@ -534,40 +638,53 @@ int main(){
     vector_fnc();
 
     // Set
-    set_fnc()
+    set_fnc();
 
     // Unorderd_multiset
-    unordered_multiset_fnc()
+    unordered_multiset_fnc();
 
     // Multiset
-    multiset_fnc()
+    multiset_fnc();
 
     // Unorderd_map
-    unordered_map_fnc()
+    unordered_map_fnc();
 
     // Map
-    map_fnc()
+    map_fnc();
 
     // Unordered multimap
-    unordered_multimap_fnc()
+    unordered_multimap_fnc();
 
     // Queue 
-    queue_fnc()
+    queue_fnc();
 
     // Stack 
-    stack_fnc()
+    stack_fnc();
 
     // Deque
-    deque_fnc()
+    deque_fnc();
   
     // Priority queue
 
 
     // multimap 
-    multimap_fnc()
+    multimap_fnc();
 
     // list
-    list_fnc()
+    list_fnc();
+
+    // Next-Permuatation
+    next_permutation_arr(); // array exmaple
+    next_permuatation_vector(); // vector example
+
+    // Bult-in pop count 
+    popcount();
+
+    // Sort()
+    sort_fnc_ex();
+
+    //Min_element()
+    findMinElem();
 
     return 0;
 }
