@@ -59,6 +59,43 @@ Map - are associative memory containing unique key and mapped value.
 functions - all functions and their working are same as the unordered-map
 Syntax - map <object_type, object_type> variable_name;
 
+
+unordered - mutimap - similar to unordered map with diffrence as it can store duplicate elements (key- mapped value pairs)
+syntax - unordered_multimap<object_type,object_type> variable_name;
+ex - unordered_multimap<int,int> num; num.insert({1, 10}) i.e {key, mapped value}
+
+// queue - is a linear list container in stl that two ends as front and rear,
+it works according to fifo(first in first out principle) , deletions happen
+on the front - end and insertion on rear-end
+Functions - push, pop, front, back, emplace(to insert an elemnt in the queue), size, empty, 
+
+// Stack - is a non-primitive data structure which acts as a ordered list,
+has only one-end called top from which both deletion and insertion happens and
+it acts according to LIFO(Last in First Out) principle
+syntax - stack<object_type> variable_name; 
+Function - push, pop, top(returns the lem at the top of the stack), emplace(), size, empty
+
+//  Deque - In Double ended queue, insertion and delteion can occur either ends of the queue front or back
+Function - push_back(), pop_back, push_front, pop_front, front, back, empty, size, begin, end
+
+// Priority queue - are type of container adaptors that can be classifieed into - max heap(by default) and min heap
+Max - Heap -> its first element is always the greatest of the elements it contains and the rest elements are in decreasing order.
+syntax - priority_queue<object_type> variable_name;
+
+Min - Heap -> its first element is always the lowest of the elements it contains and the rest elements are in increasing order.
+syntax - priority_queue<object_type, vector<object_type>, greater<object_type>> variable_name;
+
+Functions - push, pop, top, emplace, size, empty
+
+Multimap - are containers contraining key-value pairs mapped lemednts and can contain duplicate lements
+Functions - insert, begin, end, clear, find, erase, size, empty
+
+
+List - is contiguous conatiners that allows inserting and delteing any elemnt in constant time and iterating in both both directions
+Functions - push_front/back, pop_front/back, front, back, reverse, sort, empty, size
+syntax - list <object_type> variable_name;
+
+
 */
 
 
@@ -298,6 +335,195 @@ void map_fnc(){
   cout << "Size of the map after clearing all the elements: " << mp.size();
 }
 
+void unordered_multimap_fnc(){
+  unordered_multimap < int, int > mp;
+  for (int i = 1; i <= 5; i++) {
+    mp.insert({i , i * 10});
+  }
+  mp.insert({4,40});
+
+  cout << "Elements present in the unordered multimap: " << endl;
+  cout << "Key\tElement" << endl;
+  for (auto it = mp.begin(); it != mp.end(); it++) {
+    cout << it -> first << "\t" << it -> second << endl;
+  }
+
+  int n = 2;
+  if (mp.find(2) != mp.end())
+    cout << n << " is present in unordered multimap" << endl;
+
+  mp.erase(mp.begin());
+  cout << "Elements after deleting the first element: " << endl;
+  cout << "Key\tElement" << endl;
+  for (auto it = mp.begin(); it != mp.end(); it++) {
+    cout << it -> first << "\t" << it -> second << endl;
+  }
+
+  cout << "The size of the unordered multimap is: " << mp.size() << endl;
+
+  if (mp.empty() == false)
+    cout << "The unordered multimap is not empty " << endl;
+  else
+    cout << "The unordered multimap is empty" << endl;
+  mp.clear();
+  cout << "Size of the unordered multimap after clearing all the elements: " 
+  << mp.size();
+}
+
+void printqueue(queue<int> q1)
+{
+    queue<int> q2=q1;
+    while(!q2.empty())
+    {
+        cout<<q2.front()<<"\n";
+        q2.pop();
+    }
+}
+
+void queue_fnc(){
+
+    queue<int> q;
+    for(int i=1;i<=5;i++)
+      q.push(i);
+    
+    cout<<"The elements of the queue are:"<<endl;
+    printqueue(q);
+    
+    cout<<"The size of the queue: "<<q.size()<<endl;
+    cout<<"The front element of the queue: "<<q.front()<<endl;
+    cout<<"The last element of the queue: "<<q.back()<<endl;
+    cout<<"Pop the front element: "<<endl;
+    q.pop();
+    printqueue(q);
+}
+
+void printstack(stack<int> s1)
+{
+    stack<int> s2=s1;
+    while(!s2.empty())
+    {
+        cout<<s2.top()<<"\n";
+        s2.pop();
+    }
+}
+
+void stack_fnc(){
+  stack<int> s;
+    for(int i=1;i<=5;i++)
+    s.push(i);
+    
+    cout<<"The elements of the stack are:"<<endl;
+    printstack(s);
+    
+    cout<<"The size of the stack: "<<s.size()<<endl;
+    cout<<"The top element of the queue: "<<s.top()<<endl;
+    cout<<"Pop the top element: "<<endl;
+    s.pop();
+    printstack(s);
+}
+
+void printdeque(deque<int> dq)
+{
+    deque<int>::iterator it;
+    for(it=dq.begin();it!=dq.end();it++)
+    {
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+}
+
+void deque_fnc(){
+  deque<int> dq;
+    dq.push_back(10);
+    dq.push_back(20);
+    dq.push_front(30);
+    dq.push_front(40);
+    dq.push_front(50);
+    
+    cout<<"The elements in the deque are: ";
+    printdeque(dq);
+    
+    cout<<"The size of the deque is: "<<dq.size()<<endl;
+    cout<<"The first element in the deque: "<<dq.front()<<endl;
+    cout<<"Deleting the first element"<<endl;
+    dq.pop_front();
+    printdeque(dq);
+    cout<<"The last element of the deque: "<<dq.back()<<endl;
+    cout<<"Deleting the last element"<<endl;
+    dq.pop_back();
+    printdeque(dq);
+}
+
+void multimap_fnc(){
+  multimap < int, int > mp;
+  for (int i = 1; i <= 5; i++) {
+    mp.insert({i , i * 10});
+  }
+  mp.insert({4,40});
+
+  cout << "Elements present in the multimap: " << endl;
+  cout << "Key\tElement" << endl;
+  for (auto it = mp.begin(); it != mp.end(); it++) {
+    cout << it -> first << "\t" << it -> second << endl;
+  }
+
+  int n = 2;
+  if (mp.find(2) != mp.end())
+    cout << n << " is present in multimap" << endl;
+
+  mp.erase(mp.begin());
+  cout << "Elements after deleting the first element: " << endl;
+  cout << "Key\tElement" << endl;
+  for (auto it = mp.begin(); it != mp.end(); it++) {
+    cout << it -> first << "\t" << it -> second << endl;
+  }
+
+  cout << "The size of the multimap is: " << mp.size() << endl;
+
+  if (mp.empty() == false)
+    cout << "The multimap is not empty " << endl;
+  else
+    cout << "The multimap is empty" << endl;
+  mp.clear();
+  cout << "Size of the multimap after clearing all the elements: " << mp.size();
+}
+
+void printlist(list<int> li)
+{
+    list<int>::iterator it;
+    for(it=li.begin();it!=li.end();it++)
+    {
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+}
+
+void list_fnc(){
+  list<int> li;
+    li.push_back(10);
+    li.push_back(20);
+    li.push_front(30);
+    li.push_front(40);
+    li.push_front(50);
+    
+    cout<<"The elements in the list are: ";
+    printlist(li);
+    cout<<"Reversing the list: ";
+    li.reverse();
+    printlist(li);
+    cout<<"Sorting the list: ";
+    li.sort();
+    printlist(li);
+    cout<<"The size of the list is: "<<li.size()<<endl;
+    cout<<"The first element in the list: "<<li.front()<<endl;
+    cout<<"Deleting the first element"<<endl;
+    li.pop_front();
+    printlist(li);
+    cout<<"The last element of the list: "<<li.back()<<endl;
+    cout<<"Deleting the last element"<<endl;
+    li.pop_back();
+    printlist(li);
+}
 
 int main(){
 
@@ -321,6 +547,27 @@ int main(){
 
     // Map
     map_fnc()
+
+    // Unordered multimap
+    unordered_multimap_fnc()
+
+    // Queue 
+    queue_fnc()
+
+    // Stack 
+    stack_fnc()
+
+    // Deque
+    deque_fnc()
+  
+    // Priority queue
+
+
+    // multimap 
+    multimap_fnc()
+
+    // list
+    list_fnc()
 
     return 0;
 }
