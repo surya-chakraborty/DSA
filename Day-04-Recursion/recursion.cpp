@@ -92,7 +92,7 @@ int sumOfNaturalNums(int n){
 }
 
 // Factorial of a number - iterative
-void FactIterative(int n){
+int FactIterative(int n){
     int fact = 1;
     for(int i =1; i <= n; i++){
         fact *= i;
@@ -107,13 +107,13 @@ int FactRecursive(int n){
         return 1;
     }
     // factorial(N) = N * factorial(N - 1)
-    return n * fact(n -1);
+    return n * FactRecursive(n -1);
     // Time - o(n) and space - o(n)
 
 }
 
 void printArr(int arr[], int n){
-    cout << "The revrsed array is: " <, endl;
+    cout << "The revrsed array is: " << endl;
     for(int i =0; i < n; i++){
         cout << arr[i] << " ";
     }
@@ -123,7 +123,7 @@ void printArr(int arr[], int n){
 void reverseArrIterSpace(int arr[], int n){
     int ans[n];
     for(int i = n-1; i >= 0; i++){
-        ans[n - i - 1] = arr[i]
+        ans[n - i - 1] = arr[i];
     }
     printArr(ans, n);
 }
@@ -139,12 +139,103 @@ void reverseArrIter(int arr[], int n){
 }
 
 // Revrse an array - recursive way
-void reverseArrRecursive(int start, int end, int arr){
+void reverseArrRecursive(int start, int end, int arr[]){
     if(start < end){
         swap(arr[start], arr[end]);
         reverseArrRecursive(start + 1, end -1, arr);
     }
 }
+
+// Palidrome check - string(using loops)
+void PalindromeString(string s){
+    int len = s.length();
+    int flag = 1;
+    for(int i = 0; i < len/2; i++){
+        if(tolower(s[i]) != tolower(s[len - i - 1])){
+            flag = 0;
+            break;
+        }
+    }
+    if(flag == 0){
+        cout << "String is not a palindrome" << endl;
+    }else{
+        cout << "String is a palindrome" << endl;
+    }
+}
+
+// string palindrome check (using recursion)
+bool isPalindromeRecursive(string s, int start, int end){
+    if(start >= end){
+        return true;
+    }
+
+    if(tolower(s[start]) != tolower(s[end])){
+        return false;
+    }
+
+    return isPalindromeRecursive(s, start + 1, end - 1);
+}
+
+// Fibonacci Series - using loops
+// We will print fibonacci series upto given nth term
+// Time complexity - o(n) {for calculating} + o(n) {for printing}
+// Space complexity - o(n) // storing the whole array in auxilary array space
+void fibonacciIter(int n){
+    if(n == 0){
+        cout << 0;
+    }else if(n == 1){
+        cout << 0 << " " << 1 << endl;
+    }
+    else{
+        int fib[n + 1];
+        fib[0] = 0;
+        fib[1] = 1;
+        for(int i = 2; i <= n; i++){
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+
+        // Print the fibonnaci series next
+        cout << "fibonacci series upto " << n << "th term : " << endl;
+        for(int i = 0; i <=n; i++){
+            cout << fib[i] << " ";
+        }
+    }
+}
+
+
+// Fibonacci Series - using loops but space optimized
+// we will not store all the elements rather we will be having last and secondlast pointers and update them on each iteration etc.
+// Time Compelxity - o(n) {only one for loop} and Space Complexity - o(1) {constant terms}
+void printFibonacci(int n){
+    if(n == 0){
+        cout << "Fibonacci series upto " << n << "th term" << endl;
+        cout << 0;
+    }else{
+        int last = 1, secondLast = 0, curr;
+        cout << "Fibonacci series upto " << n << "th term" << endl;
+        cout << secondLast << " " << last << " ";
+        for(int i = 2; i <=n; i++){
+            curr = secondLast + last;
+            secondLast = last;
+            last = curr;
+            cout << curr << " ";
+        }
+    }
+}
+
+// Fibonacci Series - using multiple recursion calls
+// we will just print the fibonnaci of a given n numebr not the whole series 
+// Time complexity - as each recursion calls two recusrion, the time compexity is somewhere around approx ~ o(2^n)
+int printFibonaccirecursive(int n){
+    if(n <= 1){
+        return n;
+    }
+    // Note: the recursion calls happens one after another not both at the same time
+    int last = printFibonaccirecursive(n - 1);
+    int secondlast = printFibonaccirecursive(n - 2);
+    return last + secondlast;
+}
+
 
 int main(){
     
@@ -163,16 +254,29 @@ int main(){
     // printBackwardBackTracked(1, n);
     // summation(0, 1, n);
     // cout << sumOfNaturalNums(n) << endl;
-    cout << FactIterative(n) << endl;
-    cout << FactRecursive(n) << endl;
+    // cout << FactIterative(n) << endl;
+    // cout << FactRecursive(n) << endl;
 
     // Reverse an array
-    int m = 5;
-    int arr[] = {5, 4, 8, 6, 2};
-    reverseArrIterSpace(arr, n);
-    reverseArrIter(arr, n);
-    reverseArrRecursive(0, n-1, arr);
-    printArr(arr, m);
+    // int m = 5;
+    // int arr[] = {5, 4, 8, 6, 2};
+    // reverseArrIterSpace(arr, n);
+    // reverseArrIter(arr, n);
+    // reverseArrRecursive(0, n-1, arr);
+    // printArr(arr, m);
 
+    // string s;
+    // cin >> s;
+    // // PalindromeString(s);
+    // int n = s.length();
+    // bool ans = isPalindromeRecursive(s, 0, n - 1);
+    // if(ans){
+    //     cout << "string is a palindrome" << endl;
+    // }else{
+    //     cout << "String is not a palindrome" << endl;
+    // }
+
+    int result = printFibonaccirecursive(n);
+    cout << "fibonacci of n: " << result << endl;
     return 0;
 }
