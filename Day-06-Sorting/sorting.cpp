@@ -6,9 +6,9 @@ using namespace std;
 // Best , worst and Average Case time complexity - o(n^2)
 void selection_sort(int arr[],int n){
     arr[n];
-    for(int i = 0; i <= n-2; i++){
+    for(int i = 0; i < n-1; i++){
         int min = i;
-        for(int j = i; j <= n - 1; j++){
+        for(int j = i + 1; j < n ; j++){
             if(arr[j] < arr[min]){
                 min = j;
             }
@@ -35,7 +35,12 @@ int bubble_sort(int arr[], int n){
     }
 }
 
-// Insertion Sort - keep increating by one leemnt and sort the leemnt correctly in thata array
+
+void bubble_sort_recursive(int arr[], int n){
+
+}
+
+// Insertion Sort - keep increating by one elemnt and sort the elemnt correctly in that array
 // Worst and Average Case time complexity - o(n^2), Best - o(n) {already optimized}
 void insertion_sort(int arr[], int n){
     for(int i = 0; i <= n -1; i++){
@@ -84,7 +89,34 @@ void merge_sort(vector<int> &arr, int low, int high){
     merge(arr, low, mid, high);
 }
 
-// Quick Sort - 
+
+int pivot(int arr[], int low, int high){
+    int pivot = arr[low];
+    int i = low, j = high;
+    while(i < j){
+        while(arr[i] <= pivot && i <= high){
+            i++;
+        }
+        while(arr[j] > pivot && i >= low){
+            j--;
+        }
+        if(i < j){
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[j], arr[low]);
+    return j;
+}
+
+// Quick Sort - Divide and Conquer Algorithm
+// Time cplexity - o(n logn) and Space Coplexity - o(1)
+void quick_sort(int arr[], int low, int high){
+    if(low < high){
+        int partition = pivot(arr, low, high);
+        quick_sort(arr, low, partition - 1);
+        quick_sort(arr, partition + 1, high);
+    }
+}
 
 int main(){
     /*
