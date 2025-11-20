@@ -1,4 +1,5 @@
 #include <iostream>
+#include <set>
 using namespace std;
 
 /*
@@ -130,6 +131,51 @@ void finSecLargestOptimal(int arr[], int n){
     return arr[secondLargest];
 }
 
+// Check if the array is sorted - only one solution
+bool ifSorted(int arr[], int n){
+    for(int i = 1; i < n; i++){
+        if(arr[i] >= arr[i - 1]){
+
+        }else{
+            return false;
+        }
+    }
+    return true;
+}
+
+// Remove duplicates from sorted array
+// Brute Force - traverse througfh the array and save the i-th index 
+// within a set, you already know that set does only contain unique 
+// elemnent, then save that into the same array.
+// Time - o(nlogn + n) , space - o(1)
+int removeDupBF(int arr[], int n){
+    set<int> st;
+    for(int i =0; i< n; i++){
+        st.insert(arr[i]); // only stores the unique elems
+    }
+    // int resultArr[]; - no need to take another array as j will go till the unique elem number in the set only
+    int j = 0;
+    for(auto it: st){
+        arr[j] = it;
+        j++;
+    }
+    return j;
+}
+
+
+// remove Duplicates from an array - Optimal (2 pointer approach)
+// Time Complexity - O(n)
+int removeDupOP(int arr[], int n){
+    int i = 0;
+    for(int j =1; j< n; j++){
+        if(arr[j] != arr[i]){
+            i++; // move the first pointer forward
+            arr[i] = arr[j];
+        }
+    }
+    return i+1; // return the size of the array
+}
+
 int main(){
     int n;
     cout << "size of the array: " << endl;
@@ -158,6 +204,28 @@ int main(){
 
     // Finding out the second largest eleemnt in the array -
     FindSecondLargestB(arr, n);
+
+    // Check if array is sorted 
+    if(ifSorted()){
+        cout << "Given array is sorted" << endl;
+    }else{
+        cout << "Given array is not sorted" << endl;
+    }
+
+    // Remove duplicates - BruteForce
+    // int index = removeDupBF(arr, n);
+    // Check by printing the array
+    // for(int i = 0; i <= index + 1; i++){
+    //     cout << arr[i] << " ";
+    // }
+
+    // Remove duplicates - Optimal(2 pointers)
+    int index = removeDupOP(arr, n);
+    // Check by printing the array
+    for(int i = 0; i <= index; i++){
+        cout << arr[i] << " ";
+    }
+
 
     return 0;
 }
